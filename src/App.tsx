@@ -1,6 +1,11 @@
 import { useMemo, useState } from 'react';
 import './App.css';
 import Headshot from './assets/Suhaan-Headshot.jpg';
+import AppDevLogo from './assets/app-dev-icon.jpg';
+import MastiLogo from './assets/Masti-icon.png';
+import BigThinkLogo from './assets/big-think-icon.png';
+import ShertechLogo from './assets/shertech-logo.png';
+import HarvardLogo from './assets/harvard-logo.png';
 
 type ExperienceItem = {
   org: string;
@@ -9,6 +14,9 @@ type ExperienceItem = {
   dates: string;
   bullets: string[];
   tags?: string[];
+  logo?: string;
+  logoAlt?: string;
+  logoText?: string;
 };
 
 type ProjectItem = {
@@ -102,6 +110,8 @@ function App() {
           role: 'Frontend Engineer',
           location: 'University of Maryland',
           dates: 'Sept 2025 – Present',
+          logo: AppDevLogo,
+          logoAlt: 'App Dev Club logo',
           bullets: [
             'Contribute to a web application for analyzing satellite imagery and geospatial data.',
             'Develop UI components integrated with backend and AWS-based services using React, TypeScript, and REST APIs.',
@@ -114,6 +124,8 @@ function App() {
           role: 'Technology Chair',
           location: 'University of Maryland',
           dates: 'Sept 2025 – Present',
+          logo: MastiLogo,
+          logoAlt: 'Maryland Masti logo',
           bullets: [
             'Develop full-stack features for registration, scheduling, and live event updates.',
             'Perform debugging and cross-browser testing to ensure stable deployments.',
@@ -126,6 +138,8 @@ function App() {
           role: 'Full Stack Engineer',
           location: 'University of Maryland',
           dates: 'Sept 2025 – Present',
+          logo: BigThinkLogo,
+          logoAlt: 'Big Think AI Club logo',
           bullets: [
             'Work on an application that summarizes complex medical reports using an AI model and a secure processing pipeline.',
             'Implement secure upload and processing features using Python, FastAPI, and React.',
@@ -137,6 +151,8 @@ function App() {
           org: 'Harvard University',
           role: 'CS50: Introduction to Computer Science (Online)',
           dates: 'Jun 2025 – Aug 2025',
+          logo: HarvardLogo,
+          logoAlt: 'Harvard University logo',
           bullets: [
             'Completed projects in C, algorithms, memory management, and debugging.',
             'Implemented data-structure–based solutions and command-line tools.',
@@ -149,6 +165,8 @@ function App() {
           role: 'Software Intern',
           location: 'Remote',
           dates: 'Jun 2024 – Aug 2024',
+          logo: ShertechLogo,
+          logoAlt: 'Shertech Industries logo',
           bullets: [
             'Developed the BEAM analytics website: a multi-page dashboard with complex forms, stateful components, and data persistence.',
             'Integrated frontend modules with Express and MySQL APIs and ran end-to-end testing for reliability.',
@@ -452,7 +470,17 @@ function App() {
                 return (
                   <div className='card' key={item.org + item.role}>
                     <div className='exp-top'>
-                      <div>
+                      <div className='exp-left'>
+                        {item.logo ? (
+                          <div className='exp-logo'>
+                            <img src={item.logo} alt={item.logoAlt || item.org + ' logo'} />
+                          </div>
+                        ) : item.logoText ? (
+                          <div className='exp-logo exp-logo-text' role='img' aria-label={item.org + ' logo'}>
+                            {item.logoText}
+                          </div>
+                        ) : null}
+                        <div>
                         <div className='exp-role'>{item.role}</div>
                         <div className='exp-company'>
                           <span>{item.org}</span>
@@ -464,6 +492,7 @@ function App() {
                               {item.location}
                             </span>
                           ) : null}
+                        </div>
                         </div>
                       </div>
                       {renderTagPills(item.tags)}
