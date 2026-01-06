@@ -1,7 +1,5 @@
 import { useMemo, useState } from 'react';
 import './App.css';
-
-// Put your headshot at: src/assets/Suhaan-Headshot.jpg
 import Headshot from './assets/Suhaan-Headshot.jpg';
 
 type ExperienceItem = {
@@ -48,7 +46,6 @@ function App() {
         email: 'barusuhaan@gmail.com',
         phone: '(908) 391-6177',
         links: [
-          // Replace these with your real URLs from your resume
           { label: 'LinkedIn', href: 'https://www.linkedin.com/in/suhaan-baru-347881321/' },
           { label: 'GitHub', href: 'https://github.com/sbaru123' }
         ]
