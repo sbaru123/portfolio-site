@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import './App.css';
 
 // Put your headshot at: src/assets/Suhaan-Headshot.jpg
